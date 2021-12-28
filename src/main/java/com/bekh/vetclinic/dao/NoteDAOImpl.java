@@ -1,48 +1,48 @@
-package dao;
+package com.bekh.vetclinic.dao;
 
-import config.HibernateSessionFactoryUtil;
-import model.AnimalEntity;
+import com.bekh.vetclinic.config.HibernateSessionFactoryUtil;
+import com.bekh.vetclinic.model.NoteEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class AnimalDAOImpl implements AnimalDAO {
+public class NoteDAOImpl implements NoteDAO {
     @Override
-    public AnimalEntity findById(Long id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(AnimalEntity.class, id);
+    public NoteEntity findById(Long id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(NoteEntity.class, id);
     }
 
     @Override
-    public void save(AnimalEntity animal) {
+    public void save(NoteEntity note) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(animal);
+        session.save(note);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(AnimalEntity animal) {
+    public void update(NoteEntity note) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(animal);
+        session.update(note);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(AnimalEntity animal) {
+    public void delete(NoteEntity note) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(animal);
+        session.delete(note);
         tx1.commit();
         session.close();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<AnimalEntity> findAll() {
-        return (List<AnimalEntity>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From AnimalEntity ").list();
+    public List<NoteEntity> findAll() {
+        return (List<NoteEntity>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From NoteEntity").list();
     }
 }

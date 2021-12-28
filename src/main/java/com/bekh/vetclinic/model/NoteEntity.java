@@ -1,4 +1,4 @@
-package model;
+package com.bekh.vetclinic.model;
 
 import lombok.*;
 

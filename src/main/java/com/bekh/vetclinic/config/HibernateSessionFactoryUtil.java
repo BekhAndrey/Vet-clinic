@@ -1,8 +1,8 @@
-package config;
+package com.bekh.vetclinic.config;
 
-import model.AnimalEntity;
-import model.NoteEntity;
-import model.PersonEntity;
+import com.bekh.vetclinic.model.AnimalEntity;
+import com.bekh.vetclinic.model.NoteEntity;
+import com.bekh.vetclinic.model.PersonEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

@@ -1,9 +1,9 @@
-package service;
+package com.bekh.vetclinic.service;
 
-import dao.NoteDAO;
-import dao.NoteDAOImpl;
+import com.bekh.vetclinic.dao.NoteDAO;
+import com.bekh.vetclinic.dao.NoteDAOImpl;
 import lombok.NoArgsConstructor;
-import model.NoteEntity;
+import com.bekh.vetclinic.model.NoteEntity;
 
 import java.util.List;
 

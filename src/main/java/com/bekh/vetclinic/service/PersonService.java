@@ -1,9 +1,9 @@
-package service;
+package com.bekh.vetclinic.service;
 
-import dao.PersonDAO;
-import dao.PersonDAOImpl;
+import com.bekh.vetclinic.dao.PersonDAO;
+import com.bekh.vetclinic.dao.PersonDAOImpl;
 import lombok.NoArgsConstructor;
-import model.PersonEntity;
+import com.bekh.vetclinic.model.PersonEntity;
 
 import java.util.List;
 

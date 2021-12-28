@@ -1,48 +1,49 @@
-package dao;
+package com.bekh.vetclinic.dao;
 
-import config.HibernateSessionFactoryUtil;
-import model.NoteEntity;
+import com.bekh.vetclinic.config.HibernateSessionFactoryUtil;
+import com.bekh.vetclinic.model.PersonEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class NoteDAOImpl implements NoteDAO {
+public class PersonDAOImpl implements PersonDAO {
+
     @Override
-    public NoteEntity findById(Long id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(NoteEntity.class, id);
+    public PersonEntity findById(Long id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(PersonEntity.class, id);
     }
 
     @Override
-    public void save(NoteEntity note) {
+    public void save(PersonEntity person) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(note);
+        session.save(person);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(NoteEntity note) {
+    public void update(PersonEntity person) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(note);
+        session.update(person);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(NoteEntity note) {
+    public void delete(PersonEntity person) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(note);
+        session.delete(person);
         tx1.commit();
         session.close();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<NoteEntity> findAll() {
-        return (List<NoteEntity>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From NoteEntity").list();
+    public List<PersonEntity> findAll() {
+        return (List<PersonEntity>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From PersonEntity").list();
     }
 }

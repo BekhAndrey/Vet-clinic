@@ -1,6 +1,6 @@
-package dao;
+package com.bekh.vetclinic.dao;
 
-import model.AnimalEntity;
+import com.bekh.vetclinic.model.AnimalEntity;
 
 import java.util.List;
 
