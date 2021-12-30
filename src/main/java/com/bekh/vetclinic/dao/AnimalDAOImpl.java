@@ -35,7 +35,7 @@ public class AnimalDAOImpl implements AnimalDAO {
     public void delete(AnimalEntity animal) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(animal);
+        session.delete(session.get(AnimalEntity.class, animal.getId()));
         tx1.commit();
         session.close();
     }
