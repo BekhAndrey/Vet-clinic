@@ -1,8 +1,14 @@
 package com.bekh.vetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -11,7 +17,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "animal")
-public class AnimalEntity {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "owner")
+public class AnimalEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,10 +30,12 @@ public class AnimalEntity {
     @Column(name = "nick_name")
     private String nickname;
 
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
     private PersonEntity owner;
 
-    @OneToMany(mappedBy = "animal")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
     private Set<NoteEntity> notes;
 }

@@ -1,8 +1,13 @@
 package com.bekh.vetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +18,17 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "person")
-public class PersonEntity {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class PersonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonIgnore
+    private String email;
+
+    @JsonIgnore
+    private String password;
 
     @Column(name = "first_name")
     private String firstName;
@@ -30,8 +42,9 @@ public class PersonEntity {
     @OneToMany(mappedBy = "owner")
     private Set<AnimalEntity> animals = new HashSet<>();
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @OneToMany(mappedBy = "vet")
-    private Set<NoteEntity> notes = new HashSet<>();
+    private Set<NoteEntity> assignedNotes = new HashSet<>();
 
     public void addAnimal(AnimalEntity animal) {
         animal.setOwner(this);
